@@ -1,0 +1,31 @@
+@charset "utf-8";
+/* CSS Document */
+
+.clearfix:after {content:"."; display:block; height:0; visibility:hidden; clear:both; }
+.clearfix { *zoom:1;}
+.clear { clear:both; }
+.left { float:left; }
+.right { float:right; }
+.header {
+  height: 24%;
+  border: 1px solid #ccc;
+  background: #eee;
+  margin-bottom: 5px
+}
+.warp   {height:87%; border:1px solid #ccc; background:#eee;}
+.side     {height:98%;width:12%; }
+.main   {height:98%;width:88%;}
+.nav{margin:10px 15px 0px 10px;height:99%;width:98%; background:lightblue;}
+.contain{margin:10px 0px 0px 15px;height:99%;width:98%; background:#FFE3D7;}
+.recruiter {
+  width: 100px;
+}
+.employer {
+  width: 101px;
+}
+.messageBox {
+  width: 98px;
+}
+.message {
+  float: left;
+}
