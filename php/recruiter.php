@@ -1,6 +1,6 @@
 <?
 require('php/conn.php');
-$result = mysql_query("select * from work_info", $db);
+$result = mysql_query("select * from work_info", $conn);
 ?>
 <table border="1" width="95%">
   <tr bgcolor="#E0E0E0">

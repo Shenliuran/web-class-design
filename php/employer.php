@@ -1,6 +1,6 @@
 <?
-require('php/conn.php');
-$result = mysql_query("select * from work_info", $db);
+require_once './conn.php';
+$result = mysql_query("select * from work_info", $conn);
 ?>
 <a href="../php/addForm.php">添加记录</a>
 <table border="1" width="95%">

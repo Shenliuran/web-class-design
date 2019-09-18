@@ -10,7 +10,7 @@
             "name": "Launch Chrome against localhost",
             "url": "http://localhost",
             "webRoot": "${workspaceFolder}",
-            // "file": "${workspaceFolder}/php/editForm.php",
+            // "file": "${workspaceFolder}/php/adminuser.php",
             "file": "${workspaceFolder}/login_register.html",
             // "file": "${workspaceFolder}/index.html"
         }

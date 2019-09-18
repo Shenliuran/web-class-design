@@ -1,18 +1,30 @@
 <?
-require('conn.php');
-$admin = mysql_real_escape_string(strip_tags(substr($_POST['userid'], 0, 32)));
-$password = mysql_real_escape_string(strip_tags(substr($_POST['psw'], 0, 32)));
-$crptpw = crypt(md5($password), md5($admin));
-$sql = "select * from user_info where name = '$admin'";
-$result = $db->query($sql);
-if ($result->rowCount() > 0) {
-  echo "<script>alert('该用户名已经注册，请更换！');history.go(-1)</script>";
-  exit();
+header("Content-type:text/html;charset=UTF-8");
+session_start();
+require('../php/conn');
+$name = $_POST['userid'];
+$password = $_POST['psw'];
+$password_again = $_POST['psw_again'];
+
+if ($name == "" || $password == "") {
+  echo "用户名或者密码不能为空！";
 }
-$sql = "insert into user_info(name, password) values('$admin', '$crptpw')";
-$affected = $db->exec($sql);
-if ($affected == 1) {
-  echo "<script>alert('用户注册成功！');history.go(-1)</script>";
-  exit();
+else {
+  if ($password != $password_again) {
+    // echo "两次输入的密码不一致，请重新输入！";
+    echo "<a href='../login_register.html'>请重新输入</a>";
+  }
+  else {
+    $sql = "insert into user_info(name, password) values('$name', '$password')";
+    $result = mysql_query($sql);
+    if (!$result) {
+      echo "注册不成功！";
+      echo "<a href='../login_register.html'>返回</a>";
+    }
+    else {
+      echo "注册成功！";
+      echo "location:../index.html";
+    }
+  }
 }
 ?>

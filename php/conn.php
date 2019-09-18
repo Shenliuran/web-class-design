@@ -1,4 +1,5 @@
 <?
-$dsn = "mysql:host=localhost;dbname=recruit_database";
-$db = new PDO($dsn ,'root', '19990505crane');
+$conn = mysql_connect("localhost", "root", "19990505crane");
+mysql_query("set name 'utf-8'");
+mysql_select_db("recruit_database", $conn);
 ?>
