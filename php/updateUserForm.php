@@ -23,6 +23,16 @@ $row = mysql_fetch_assoc($result);
     <tr>
       <td width="125">密码：</td>
       <td width="275"><input type="text" name="password" value="<?php echo "{$row['password']}";?>"></td>
-    <tr><td>&nbsp;</td><td><input type="submit" value="确定"></td></tr>
+    </tr>
+    <tr>
+      <td width="125">电话：</td>
+      <td width="275"><input type="text" name="tel" value="<?php echo "{$row['tel']}";?>"></td>
+    </tr>
+    <tr>
+      <td width="125">学历：</td>
+      <td width="275"><input type="text" name="degree" value="<?php echo "{$row['degree']}";?>"></td>
+    </tr>
+    <td>&nbsp;</td><td><input type="submit" value="确定"></td>
+  </tr>
   </table>
 </form>

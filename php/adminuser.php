@@ -10,12 +10,14 @@ $row = mysql_num_rows($result);
 <a href="../index.html">返回</a>
 <table border="1" width="95%">
   <tr bgcolor="#E0E0E0">
-    <th>ID</th><th>名称</th><th>密码</th><td>删除</td><td>更新</td>
+    <th>ID</th><th>名称</th><th>密码</th><th>电话</th><th>学历</th><td>删除</td><td>更新</td>
     <?php while ($row = mysql_fetch_assoc($result)) { ?>
       <tr>
         <td><?php echo "{$row['id']}";?></td>
         <td><?php echo "{$row['name']}";?></td>
         <td><?php echo "{$row['password']}";?></td>
+        <td><?php echo "{$row['tel']}";?></td>
+        <td><?php echo "{$row['degree']}";?></td>
         <td><a href="../php/deleteUser.php?id=<?php echo "{$row['id']}" ?>">删除</a></td>
         <td><a href="../php/updateUserForm.php?id=<?php echo "{$row['id']}" ?>">更新</a></td>
       </tr>

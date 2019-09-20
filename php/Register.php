@@ -5,10 +5,12 @@ $conn=mysql_connect("localhost","root","") or die("不能连接服务器!") ;		 
 mysql_query("set names utf8");	 		//设置字符集
 mysql_select_db("recruit_database",$conn) or die("不能连接数据库");
 session_start();
+$id = $_POST['id'];
 $name = $_POST['userid'];
 $password = $_POST['psw'];
 $password_again = $_POST['psw_again'];
-
+$tel = $_POST['tel'];
+$degree = $_POST['degree'];
 if ($name == "" || $password == "") {
   echo "用户名或者密码不能为空！";
 }
@@ -18,7 +20,7 @@ else {
     echo "<a href='../login_register.html'>请重新输入</a>";
   }
   else {
-    $sql = "insert into user_info(id, name,password) values('$id', '$name', '$password')";
+    $sql = "insert into user_info(id, name,password, tel, degree) values('$id', '$name', '$password', '$tel', '$degree')";
     $result = mysql_query($sql) or die("失败");
     if (!$result) {
       echo "注册不成功！";
