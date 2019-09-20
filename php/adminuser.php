@@ -1,45 +1,24 @@
-<?
-require('conn.php');
-$result = $db->query('select * from user_info');
-$result->setFetchMode(PDO::FETCH_ASSOC);
+<?php
+header("Content-type:text/html;charset=UTF-8");
+$conn=mysql_connect("localhost","root","") or die("不能连接服务器!") ;		 //连接数据库服务器
+// echo "$conn";
+mysql_query("set names utf8");	 		//设置字符集
+mysql_select_db("recruit_database",$conn) or die("不能连接数据库");
+$result = mysql_query("select * from user_info", $conn);
+$row = mysql_num_rows($result);
 ?>
-<h3>后台用户管理</h3>
+<a href="../index.html">返回</a>
 <table border="1" width="95%">
-  <tr bgcolor="#E0E0E0"></tr>
-  <th>ID</th><th>用户名</th><th>密码</th><th>删除</th><th>修改</th>
-  <? while($row = $result->fetch()) { ?>
-    <tr>
-      <td><?=$row['id'] ?></td><td><?=$row['name'] ?></td><td><?=$row['password'] ?></td>
-        <td><a href="act.php">删除</a></td>
-        <td><a href="?mod=y&id=<?=$row['id'] ?>"></a>修改</td>
-    </tr>
-  <? } ?>
+  <tr bgcolor="#E0E0E0">
+    <th>ID</th><th>名称</th><th>密码</th><td>删除</td><td>更新</td>
+    <?php while ($row = mysql_fetch_assoc($result)) { ?>
+      <tr>
+        <td><?php echo "{$row['id']}";?></td>
+        <td><?php echo "{$row['name']}";?></td>
+        <td><?php echo "{$row['password']}";?></td>
+        <td><a href="../php/deleteUser.php?id=<?php echo "{$row['id']}" ?>">删除</a></td>
+        <td><a href="../php/updateUserForm.php?id=<?php echo "{$row['id']}" ?>">更新</a></td>
+      </tr>
+    <?php } ?>
+  </tr>
 </table>
-<p>共有<?=$result->rowCount() ?>行</p>
-<?
-if ($_GET['mod'] == 'y') {
-  $id = intval($_GET['id']);
-  $sql = "select * from user_info where id = '$id'";
-  $result = $db->exec($sql);
-  $result->setFetchMode(PDO::FETCH_ASSOC);
-  $row = $result->fetch();
-?>
-<h2 align="center">修改密码</h2>
-<form method="post" action="php/act.php?mod=y&id=<?=$row['name']?>">
-  <table width="400" border="1" align="center" cellpadding="2">
-    <tr>
-      <td width="125">用户名：</td>
-      <td width="275"><input type="text" name="user" value="<?=$row['user']?>">*</td>
-    </tr>
-    <tr>
-      <td width="125">原密码：</td>
-      <td width="275"><input type="text" name="oldpws">*</td>
-    </tr>
-    <tr>
-      <td width="125">新密码：</td>
-      <td width="275"><input type="text" name="password">*</td>
-    </tr>
-    <tr><td>&nbsp;</td><td><input type="submit" value="确定"></td></tr>
-  </table>
-</form>
-<? } ?>
